@@ -14,20 +14,28 @@ void Merge_sort::merger(int array[], int const begin, int const end)
 {
     if (!sorted)
     {
+        if (change)
+			return;
         if (begin >= end)
             return; // Returns recursively
 
         auto mid = begin + (end - begin) / 2;
         current = mid;
         merger(arr, begin, mid);
+        if (change)
+            return;
         merger(arr, mid + 1, end);
+        if (change)
+            return;
         merge(arr, begin, mid, end);
-        update();
-        draw();
+        if (change)
+            return;
         counter++;
         if (counter == SIZE)
             sorted = true;
     }
+    update();
+        draw();
     
 }
 
@@ -45,7 +53,6 @@ void Merge_sort::merge(int array[SIZE], int const left, int const mid,int const 
         leftArray[i] = array[left + i];
     for (auto j = 0; j < subArrayTwo; j++)
         rightArray[j] = array[mid + 1 + j];
-
     auto indexOfSubArrayOne
         = 0, // Initial index of first sub-array
         indexOfSubArrayTwo
@@ -56,6 +63,8 @@ void Merge_sort::merge(int array[SIZE], int const left, int const mid,int const 
     // Merge the temp arrays back into array[left..right]
     while (indexOfSubArrayOne < subArrayOne
         && indexOfSubArrayTwo < subArrayTwo) {
+        if (change)
+            return;
         if (leftArray[indexOfSubArrayOne]
             <= rightArray[indexOfSubArrayTwo]) {
             array[indexOfMergedArray]
@@ -72,6 +81,8 @@ void Merge_sort::merge(int array[SIZE], int const left, int const mid,int const 
     // Copy the remaining elements of
     // left[], if there are any
     while (indexOfSubArrayOne < subArrayOne) {
+        if (change)
+            return;
         array[indexOfMergedArray]
             = leftArray[indexOfSubArrayOne];
         indexOfSubArrayOne++;
@@ -80,6 +91,8 @@ void Merge_sort::merge(int array[SIZE], int const left, int const mid,int const 
     // Copy the remaining elements of
     // right[], if there are any
     while (indexOfSubArrayTwo < subArrayTwo) {
+        if (change)
+            return;
         array[indexOfMergedArray]
             = rightArray[indexOfSubArrayTwo];
         indexOfSubArrayTwo++;

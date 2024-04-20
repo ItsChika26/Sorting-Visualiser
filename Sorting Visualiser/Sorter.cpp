@@ -3,7 +3,7 @@
 int Sorter::counter = 0;
 
 
-Sorter::Sorter(): sorted(false), current(0)
+Sorter::Sorter(): sorted(false), current(0), change(false)
 {
 	for (int i = 0; i < SIZE; i++)
 		arr[i] = i;
@@ -14,11 +14,13 @@ Sorter::Sorter(): sorted(false), current(0)
 
 void Sorter::reset()
 {
+	SetRandomSeed(GetTime());
 	for (int i = 0; i < SIZE; i++)
 		swap(arr[i], arr[GetRandomValue(0, SIZE)]);
 	sorted = false;
 	counter = 0;
 	current = 0;
+	change = false;
 	update();
 }
 

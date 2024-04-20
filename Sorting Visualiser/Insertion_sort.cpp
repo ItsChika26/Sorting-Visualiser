@@ -13,6 +13,8 @@ void Insertion_sort::sort()
 
         while (j >= 0 && arr[j] < key)
         {
+        	if (change)
+                return;
             arr[j + 1] = arr[j];
             j = j - 1;
         }

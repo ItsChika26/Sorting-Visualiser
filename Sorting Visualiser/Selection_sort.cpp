@@ -10,6 +10,8 @@ void Selection_sort::sort()
 	if (!sorted) {
 		int max = counter;
 		for (int j = counter; j < SIZE; j++) {
+			if (change)
+				return;
 			arr[j] > arr[max] ? max = j : max = max;
 			current = j;
 		}
